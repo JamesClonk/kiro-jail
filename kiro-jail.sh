@@ -1,6 +1,8 @@
 #!/bin/bash
 
 source ~/.aws_identity_provider || true
+export AWS_IDENTITY_PROVIDER_URL=${AWS_IDENTITY_PROVIDER_URL:-https://your-value.awsapps.com/start}
+export AWS_REGION=${AWS_REGION:-eu-central-1}
 export KIRO_JAIL=$(basename $(pwd))
 export UID=$(id -u)
 export GID=$(id -g)
