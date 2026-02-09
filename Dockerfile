@@ -1,7 +1,7 @@
 FROM alpine:3.23
 LABEL author="JamesClonk <jamesclonk@jamesclonk.ch>"
 
-RUN apk --no-cache add ca-certificates go curl bash unzip jq
+RUN apk --no-cache add ca-certificates go curl bash unzip jq git
 
 RUN addgroup -g 501 kiro && \
     adduser -u 501 -G kiro -h /home/kiro -s /bin/bash -D kiro
