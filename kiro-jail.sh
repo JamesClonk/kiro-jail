@@ -2,9 +2,9 @@
 
 export KIRO_JAIL=$(basename $(pwd))
 
-docker run -it --rm \
-	-v ~/.kiro:/root/.kiro \
-	-v "$(pwd)":/root/project \
-	-w /root/project \
+podman run -it --rm \
+	-v "$(pwd)":/home/project \
+	-v ~/.kiro:/home/project/.kiro \
+	-w /home/project \
 	--name "${KIRO_JAIL}" \
-	kiro-cli
+	kiro-jail:latest kiro-cli
