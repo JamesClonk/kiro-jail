@@ -3,8 +3,8 @@ LABEL author="JamesClonk <jamesclonk@jamesclonk.ch>"
 
 RUN apk --no-cache add ca-certificates go curl bash unzip jq git
 
-RUN addgroup -g 501 kiro && \
-    adduser -u 501 -G kiro -h /home/kiro -s /bin/bash -D kiro
+RUN addgroup -g 1000 kiro && \
+    adduser -u 1000 -G kiro -h /home/kiro -s /bin/bash -D kiro
 RUN USER=kiro && \
     GROUP=kiro && \
     curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.6.0/fixuid-0.6.0-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf - && \

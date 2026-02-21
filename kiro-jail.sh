@@ -7,7 +7,7 @@ export KIRO_JAIL=$(basename $(pwd))
 export KIRO_UID=$(id -u)
 export KIRO_GID=$(id -g)
 
-podman run -it --rm \
+docker run -it --rm \
 	-v ~/.kiro:/home/kiro/.kiro:rw,Z \
 	-v "$(pwd)":/home/kiro/project:rw,Z \
 	-w /home/kiro/project \
