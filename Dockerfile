@@ -1,10 +1,10 @@
 FROM alpine:3.23
 LABEL author="JamesClonk <jamesclonk@jamesclonk.ch>"
 
-RUN apk --no-cache add ca-certificates go curl bash unzip jq git
+RUN apk --no-cache add ca-certificates go curl bash unzip jq git gcompat
 
-RUN addgroup -g 1000 kiro && \
-    adduser -u 1000 -G kiro -h /home/kiro -s /bin/bash -D kiro
+RUN addgroup -g 501 kiro && \
+    adduser -u 501 -G kiro -h /home/kiro -s /bin/bash -D kiro
 RUN USER=kiro && \
     GROUP=kiro && \
     curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.6.0/fixuid-0.6.0-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf - && \
@@ -14,7 +14,11 @@ RUN USER=kiro && \
     printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
 USER kiro:kiro
 
-RUN curl -fsSL https://cli.kiro.dev/install | bash
+ARG KIRO_VERSION=1.28.3
+RUN curl -fsSL -o /tmp/kirocli.zip \
+    "https://prod.download.cli.kiro.dev/stable/${KIRO_VERSION}/kirocli-x86_64-linux-musl.zip" && \
+    cd /tmp && unzip kirocli.zip && cd kirocli && KIRO_CLI_SKIP_SETUP=1 bash install.sh && \
+    rm -rf /tmp/kirocli*
 
 ENV PATH="/home/kiro/.local/bin:${PATH}"
 ENV PATH="/home/kiro/bin:${PATH}"
