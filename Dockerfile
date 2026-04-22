@@ -14,7 +14,11 @@ RUN USER=kiro && \
     printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
 USER kiro:kiro
 
-RUN curl -fsSL https://cli.kiro.dev/install | bash
+ARG KIRO_VERSION=1.28.3
+RUN curl -fsSL -o /tmp/kirocli.zip \
+    "https://prod.download.cli.kiro.dev/stable/${KIRO_VERSION}/kirocli-x86_64-linux-musl.zip" && \
+    cd /tmp && unzip kirocli.zip && cd kirocli && KIRO_CLI_SKIP_SETUP=1 bash install.sh && \
+    rm -rf /tmp/kirocli*
 
 ENV PATH="/home/kiro/.local/bin:${PATH}"
 ENV PATH="/home/kiro/bin:${PATH}"
