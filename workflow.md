@@ -1,6 +1,7 @@
 # Research
 
 ## Prompt
+
 read this folder in depth, understand how it works deeply, what it does and all its specificities. when that is done, write a detailed report of your learnings and findings into a file called "research.md"
 
 # Planning
@@ -12,7 +13,7 @@ write a detailed "plan.md" file for outlining how to implement and achieve this.
 
 ## Annotation Cycle
 
-Adapt and anotate the plan.md file with finetuned instructions or plans.
+Adapt and annotate the plan.md file with fine-tuned instructions or plans.
 Once done, go through another planning prompt iteration.
 
 ## Prompt
